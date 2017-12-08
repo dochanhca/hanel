@@ -12,6 +12,14 @@ public class NearByItem {
     private String discount;
     private int resourceId;
 
+    public NearByItem(String shopName, String address, String ip, String discount, int resourceId) {
+        this.shopName = shopName;
+        this.address = address;
+        this.ip = ip;
+        this.discount = discount;
+        this.resourceId = resourceId;
+    }
+
     public String getShopName() {
         return shopName;
     }

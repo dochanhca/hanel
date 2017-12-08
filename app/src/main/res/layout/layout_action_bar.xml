@@ -36,7 +36,7 @@
         android:text="Title"
         android:textSize="@dimen/text_size_action_bar"
         android:textAllCaps="true"
-        android:textColor="@color/text_color_blue_dark" />
+        android:textColor="@color/white" />
 
     <ImageView
         android:id="@+id/img_logo"

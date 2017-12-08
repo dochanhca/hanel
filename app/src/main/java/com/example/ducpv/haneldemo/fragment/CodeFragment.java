@@ -5,8 +5,6 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.example.ducpv.haneldemo.R;
 import com.example.ducpv.haneldemo.adapter.CodeAdapter;
@@ -17,7 +15,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import butterknife.Unbinder;
 
 /**
@@ -26,12 +23,6 @@ import butterknife.Unbinder;
 
 public class CodeFragment extends BaseFragment {
 
-    @BindView(R.id.img_user)
-    ImageView imgUser;
-    @BindView(R.id.txt_user_name)
-    TextView txtUserName;
-    @BindView(R.id.img_edit)
-    ImageView imgEdit;
     @BindView(R.id.recycler_code)
     RecyclerView recyclerCode;
     Unbinder unbinder;
@@ -55,10 +46,6 @@ public class CodeFragment extends BaseFragment {
         unbinder.unbind();
     }
 
-    @OnClick(R.id.img_edit)
-    public void onViewClicked() {
-    }
-
     private void initRecyclerCode() {
         adapter = new CodeAdapter(getActivity().getApplicationContext(), getMockDatas());
         recyclerCode.setAdapter(adapter);
@@ -77,8 +64,10 @@ public class CodeFragment extends BaseFragment {
         item.setCodeName("Gift code miễn phí");
         item.setCodeDetail("CODE: 194G-6SH-542M (đã hết hạn)");
 
-        CodeItem item2 = item;
+        CodeItem item2 = new CodeItem();
         item2.setCodeName("Gift code 100k");
+        item2.setCodeDetail("CODE: 194G-6SH-542M (đã hết hạn)");
+        item2.setResourceId(R.drawable.img_promotion_1);
 
         nearByItems.add(item);
         nearByItems.add(item2);

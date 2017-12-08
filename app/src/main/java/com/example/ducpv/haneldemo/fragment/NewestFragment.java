@@ -3,6 +3,7 @@ package com.example.ducpv.haneldemo.fragment;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -11,8 +12,8 @@ import android.widget.TextView;
 
 import com.example.ducpv.haneldemo.R;
 import com.example.ducpv.haneldemo.activity.PromotionDetailActivitty;
-import com.example.ducpv.haneldemo.adapter.PromotionAdapter;
-import com.example.ducpv.haneldemo.model.PromotionItem;
+import com.example.ducpv.haneldemo.adapter.NewestAdapter;
+import com.example.ducpv.haneldemo.model.NewestItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,7 @@ import butterknife.Unbinder;
  * Created by ducpv on 12/6/17.
  */
 
-public class NewestFragment extends BaseFragment {
+public class NewestFragment extends BaseFragment implements NewestAdapter.PromotionClickListener {
 
     @BindView(R.id.img_cover)
     ImageView imgCover;
@@ -62,10 +63,15 @@ public class NewestFragment extends BaseFragment {
 
         txtOtherPromotion.setPaintFlags(txtOtherPromotion.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
 
-        PromotionAdapter promotionAdapter = new PromotionAdapter(getActivity().getApplicationContext(),
+        NewestAdapter newestAdapter = new NewestAdapter(getActivity().getApplicationContext(),
                 getMockDatas());
-        recyclerPromotion.setAdapter(promotionAdapter);
+        newestAdapter.setPromotionClickListener(this);
+
+        recyclerPromotion.setAdapter(newestAdapter);
         recyclerPromotion.setLayoutManager(new LinearLayoutManager(getActivity()));
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getActivity(),
+                DividerItemDecoration.VERTICAL);
+        recyclerPromotion.addItemDecoration(dividerItemDecoration);
     }
 
     @Override
@@ -82,18 +88,25 @@ public class NewestFragment extends BaseFragment {
         }
     }
 
-    private List<PromotionItem> getMockDatas() {
-        List<PromotionItem> promotionItems = new ArrayList<>();
+    private List<NewestItem> getMockDatas() {
+        List<NewestItem> newestItems = new ArrayList<>();
 
-        PromotionItem promotionItem = new PromotionItem();
-        promotionItem.setTitle(getString(R.string.promotion_title));
-        promotionItem.setDes(getString(R.string.promotion_des));
-        promotionItem.setPrice(1058000);
-        promotionItem.setPromoPrice(900000);
-        promotionItem.setResouceId(R.drawable.img_promotion_1);
+        NewestItem newestItem = new NewestItem(getString(R.string.promotion_title),
+                getString(R.string.promotion_des), R.drawable.img_promotion_1,1058000, 900000);
 
-        promotionItems.add(promotionItem);
-        promotionItems.add(promotionItem);
-        return promotionItems;
+        NewestItem newestItem2 = new NewestItem("Buôn thả ga với Moca",
+                "Giảm ngay 30k khi nạp tiền điện thoại và mua mã thẻ với" +
+                        "Moca, Áp dụng cho chủ thẻ lần đầu tiên sử dụng Moca từ 16/01 - 16/08/2017", R.drawable.image_promotion_2,1058000, 900000);
+
+        newestItems.add(newestItem2);
+        newestItems.add(newestItem);
+        return newestItems;
+    }
+
+    @Override
+    public void onPromotionItemClick(NewestItem item) {
+        Intent intent = new Intent(getActivity(), PromotionDetailActivitty.class);
+
+        startActivity(intent);
     }
 }

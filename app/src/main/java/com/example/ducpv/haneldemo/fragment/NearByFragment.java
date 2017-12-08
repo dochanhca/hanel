@@ -22,12 +22,15 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by ducpv on 12/6/17.
@@ -36,7 +39,9 @@ import java.util.List;
 public class NearByFragment extends BaseFragment implements OnMapReadyCallback {
 
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 111;
-    private static final float DEFAULT_ZOOM = 10;
+    private static final float DEFAULT_ZOOM = 15;
+    private static final LatLng DEFAULT_LATLNG = new LatLng(10.8010112,106.6813743);
+    private static final int DEFAULT_RADIUS = 200;
 
     private SupportMapFragment mapFragment;
     private GoogleMap mMap;
@@ -79,14 +84,14 @@ public class NearByFragment extends BaseFragment implements OnMapReadyCallback {
     private List<NearByItem> getMockDatas() {
         List<NearByItem> nearByItems = new ArrayList<>();
 
-        NearByItem nearByItem = new NearByItem();
-        nearByItem.setResourceId(R.drawable.img_promotion_1);
-        nearByItem.setShopName("Coffee bean");
-        nearByItem.setAddress("Số 20 Phan Xích Long, P2, Quận Phú Nhuận, TP HCM");
-        nearByItem.setIp("192.158.2");
-        nearByItem.setDiscount("2 Ưu đãi");
+        NearByItem nearByItem = new NearByItem("Coffee bean",
+                "Số 20 Phan Xích Long, P2, Quận Phú Nhuận, TP HCM", "192.158.2", "2 Ưu đãi",
+                R.drawable.img_promotion_1);
 
-        nearByItems.add(nearByItem);
+        NearByItem nearByItem1 = new NearByItem("House of Cha", "185 Kim Mã, Ba Đình, Hà Nội",
+                "192.123.3", "5 ưu đãi", R.drawable.img_house_of_cha);
+
+        nearByItems.add(nearByItem1);
         nearByItems.add(nearByItem);
 
         return nearByItems;
@@ -96,11 +101,22 @@ public class NearByFragment extends BaseFragment implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.getUiSettings().setRotateGesturesEnabled(true);
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
+                DEFAULT_LATLNG, DEFAULT_ZOOM));
         // Turn on the My Location layer and the related control on the map.
         updateLocationUI();
 
         // Get the current location of the device and set the position of the map.
         getDeviceLocation();
+
+        LatLng firstMarker = getLocation(DEFAULT_LATLNG.longitude, DEFAULT_LATLNG.latitude, DEFAULT_RADIUS);
+        LatLng secondMarker = getLocation(DEFAULT_LATLNG.longitude, DEFAULT_LATLNG.latitude, DEFAULT_RADIUS);
+
+        addMarkerToMap("Coffee bean", "Số 20 Phan Xích Long, P2, quận Phú Nhuận",
+                secondMarker);
+
+        addMarkerToMap("House of Cha", "185 Kim Mã, Ba Đình, Hà Nội",
+                firstMarker);
     }
 
     @Override
@@ -151,7 +167,7 @@ public class NearByFragment extends BaseFragment implements OnMapReadyCallback {
                 mMap.getUiSettings().setMyLocationButtonEnabled(false);
                 getLocationPermission();
             }
-        } catch (SecurityException e)  {
+        } catch (SecurityException e) {
             Log.e("Exception: %s", e.getMessage());
         }
     }
@@ -170,22 +186,75 @@ public class NearByFragment extends BaseFragment implements OnMapReadyCallback {
                         if (task.isSuccessful() && task.getResult() != null) {
                             // Set the map's camera position to the current location of the device.
                             Location mLastKnownLocation = (Location) task.getResult();
-                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
-                                    new LatLng(mLastKnownLocation.getLatitude(),
-                                            mLastKnownLocation.getLongitude()), DEFAULT_ZOOM));
-                        }
-                        else {
+                            LatLng myLatlng = new LatLng(mLastKnownLocation.getLatitude(),
+                                    mLastKnownLocation.getLongitude());
+
+                            mMap.clear();
+                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myLatlng
+                                    , DEFAULT_ZOOM));
+
+                            LatLng firstMarker = getLocation(myLatlng.longitude, myLatlng.latitude, DEFAULT_RADIUS);
+                            LatLng secondMarker = getLocation(myLatlng.longitude, myLatlng.latitude, DEFAULT_RADIUS);
+
+                            addMarkerToMap("Coffee bean", "Số 20 Phan Xích Long, P2, quận Phú Nhuận",
+                                    secondMarker);
+
+                            addMarkerToMap("House of Cha", "185 Kim Mã, Ba Đình, Hà Nội",
+                                    firstMarker);
+                        } else {
                             Log.e(TAG, "Current location is null. Using defaults.");
                             Log.e(TAG, "Exception: %s", task.getException());
-                            LatLng mDefaultLocation = new LatLng(21.0228161, 105.801944);
-                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mDefaultLocation, DEFAULT_ZOOM));
                             mMap.getUiSettings().setMyLocationButtonEnabled(false);
                         }
                     }
                 });
             }
-        } catch(SecurityException e)  {
+        } catch (SecurityException e) {
             Log.e("Exception: %s", e.getMessage());
         }
+    }
+
+    private void addMarkerToMap(String title, String address, LatLng markerLatlng) {
+        MarkerOptions markerOptions = new MarkerOptions();
+        markerOptions.position(markerLatlng);
+        markerOptions.anchor(0.5f, 0.5f); // center of the image
+        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location_green));
+        markerOptions.title(title)
+                .snippet(address);
+
+        mMap.addMarker(markerOptions);
+
+    }
+
+    /**
+     *
+     * @param lon
+     * @param lat
+     * @param radius number of meter
+     * @return
+     */
+    private LatLng getLocation(double lon, double lat, int radius)
+    {
+        Random random = new Random();
+
+        // Convert radius from meters to degrees
+        double radiusInDegrees = radius / 111000f;
+
+        double u = random.nextDouble();
+        double v = random.nextDouble();
+        double w = radiusInDegrees * Math.sqrt(u);
+        double t = 2 * Math.PI * v;
+        double x = w * Math.cos(t);
+        double y = w * Math.sin(t);
+
+        // Adjust the x-coordinate for the shrinking of the east-west distances
+        double new_x = x / Math.cos(lat);
+
+        double foundLongitude = new_x + lon;
+        double foundLatitude = y + lat;
+        System.out.println("Longitude: " + foundLongitude + "  Latitude: "
+                + foundLatitude);
+
+        return new LatLng(foundLatitude, foundLongitude);
     }
 }

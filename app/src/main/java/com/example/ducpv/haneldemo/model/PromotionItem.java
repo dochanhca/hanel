@@ -1,7 +1,7 @@
 package com.example.ducpv.haneldemo.model;
 
 /**
- * Created by ducpv on 12/7/17.
+ * Created by ducpv on 12/8/17.
  */
 
 public class PromotionItem {
@@ -9,8 +9,17 @@ public class PromotionItem {
     private String title;
     private String des;
     private int resouceId;
-    private double price;
-    private double promoPrice;
+    private String date;
+
+    public PromotionItem() {
+    }
+
+    public PromotionItem(String title, String des, int resouceId, String date) {
+        this.title = title;
+        this.des = des;
+        this.resouceId = resouceId;
+        this.date = date;
+    }
 
     public String getTitle() {
         return title;
@@ -36,19 +45,11 @@ public class PromotionItem {
         this.resouceId = resouceId;
     }
 
-    public double getPrice() {
-        return price;
+    public String getDate() {
+        return date;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public double getPromoPrice() {
-        return promoPrice;
-    }
-
-    public void setPromoPrice(double promoPrice) {
-        this.promoPrice = promoPrice;
+    public void setDate(String date) {
+        this.date = date;
     }
 }

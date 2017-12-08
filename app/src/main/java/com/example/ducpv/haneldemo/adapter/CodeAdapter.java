@@ -39,7 +39,7 @@ public class CodeAdapter extends RecyclerView.Adapter<CodeAdapter.ViewHolder> {
 
         holder.imgCover.setImageResource(item.getResourceId());
         holder.txtCodeName.setText(item.getCodeName());
-        holder.txtCodeDetail.setText(item.getCodeName());
+        holder.txtCodeDetail.setText(item.getCodeDetail());
     }
 
     @Override

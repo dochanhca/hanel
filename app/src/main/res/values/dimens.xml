@@ -5,8 +5,9 @@
     <dimen name="text_size_small">12sp</dimen>
     <dimen name="text_size_normal">14sp</dimen>
     <dimen name="text_size_tiny">10sp</dimen>
-    <dimen name="divider">1dp</dimen>
+    <dimen name="divider">0.5dp</dimen>
     <dimen name="normal_margin">10dp</dimen>
     <dimen name="text_size_action_bar">16sp</dimen>
     <dimen name="navigation_height">60dp</dimen>
+    <dimen name="promotion_image_size">100dp</dimen>
 </resources>

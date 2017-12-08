@@ -42,6 +42,9 @@ public class AccountFragment extends BaseFragment {
         mTabHost.addTab(
                 mTabHost.newTabSpec(CodeFragment.class.getSimpleName()).setIndicator(getTabIndicator(R.string.code)),
                 CodeFragment.class, null);
+        mTabHost.addTab(
+                mTabHost.newTabSpec(MyInfoFragment.class.getSimpleName()).setIndicator(getTabIndicator(R.string.my_info)),
+                MyInfoFragment.class, null);
     }
 
     private View getTabIndicator(int title) {

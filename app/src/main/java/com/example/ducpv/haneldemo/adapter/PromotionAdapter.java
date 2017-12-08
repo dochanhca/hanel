@@ -1,23 +1,20 @@
 package com.example.ducpv.haneldemo.adapter;
 
 import android.content.Context;
-import android.graphics.Paint;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.ducpv.haneldemo.R;
 import com.example.ducpv.haneldemo.customuis.SquareImageView;
 import com.example.ducpv.haneldemo.model.PromotionItem;
 
-import java.text.DecimalFormat;
 import java.util.List;
 
 /**
- * Created by ducpv on 12/7/17.
+ * Created by ducpv on 12/8/17.
  */
 
 public class PromotionAdapter extends RecyclerView.Adapter<PromotionAdapter.ViewHolder> {
@@ -25,31 +22,39 @@ public class PromotionAdapter extends RecyclerView.Adapter<PromotionAdapter.View
     private List<PromotionItem> promotionItems;
     private final Context context;
 
+    private PromotionClickListener promotionClickListener;
+
     public PromotionAdapter(Context context, List<PromotionItem> promotionItems) {
         this.promotionItems = promotionItems;
         this.context = context;
     }
 
-    @Override
-    public PromotionAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_promotion, parent, false);
-        return new ViewHolder(view);
+    public void setPromotionClickListener(PromotionClickListener promotionClickListener) {
+        this.promotionClickListener = promotionClickListener;
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        PromotionItem item = promotionItems.get(position);
+    public PromotionAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_promotion, parent, false);
+        return new PromotionAdapter.ViewHolder(view);
+    }
 
-        DecimalFormat priceFormat = new DecimalFormat("#,###,###");
+    @Override
+    public void onBindViewHolder(final PromotionAdapter.ViewHolder holder, int position) {
+        final PromotionItem item = promotionItems.get(position);
 
         holder.imgCover.setImageResource(item.getResouceId());
         holder.txtTitle.setText(item.getTitle());
         holder.txtDes.setText(item.getDes());
-        holder.txtOldPrice.setText(priceFormat.format(item.getPrice()).replace(",", ".")
-        +"đ");
-        holder.txtNewPrice.setText(priceFormat.format(item.getPromoPrice()).replace(",", "."));
+        holder.txtDate.setText(context.getString(R.string.expiry_date) + ": " + item.getDate());
 
-        holder.txtOldPrice.setPaintFlags(holder.txtOldPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+        holder.rootView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                promotionClickListener.onPromotionItemClick(item);
+            }
+        });
+
     }
 
     @Override
@@ -62,24 +67,20 @@ public class PromotionAdapter extends RecyclerView.Adapter<PromotionAdapter.View
         SquareImageView imgCover;
         TextView txtTitle;
         TextView txtDes;
-        TextView txtOldPrice;
-        TextView txtNewPrice;
+        TextView txtDate;
+        ViewGroup rootView;
 
         public ViewHolder(View root) {
             super(root);
             imgCover = root.findViewById(R.id.img_promotion_cover);
             txtTitle = root.findViewById(R.id.txt_promotion_title);
             txtDes = root.findViewById(R.id.txt_promotion_des);
-            txtOldPrice = root.findViewById(R.id.txt_old_price);
-            txtNewPrice = root.findViewById(R.id.txt_new_price);
+            txtDate = root.findViewById(R.id.txt_date);
+            rootView = root.findViewById(R.id.root_view);
         }
+    }
 
-        public void setCoverSize() {
-            RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) imgCover.getLayoutParams();
-
-            layoutParams.height = imgCover.getHeight();
-            layoutParams.width = imgCover.getHeight();
-            imgCover.setLayoutParams(layoutParams);
-        }
+    public interface PromotionClickListener {
+        void onPromotionItemClick(PromotionItem item);
     }
 }

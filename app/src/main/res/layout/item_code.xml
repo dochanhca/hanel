@@ -2,8 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/normal_margin"
-    android:layout_marginBottom="@dimen/normal_margin">
+    android:layout_marginBottom="@dimen/normal_margin"
+    android:layout_marginTop="@dimen/normal_margin">
 
     <com.example.ducpv.haneldemo.customuis.SquareImageView
         android:id="@+id/img_nearby_cover"
@@ -33,23 +33,60 @@
         android:text="Code: 194G-6SH-542M (đã hết hạn)"
         android:textSize="@dimen/text_size_small" />
 
-    <ImageView
-        android:id="@+id/img_copy_code"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/txt_code_detail"
-        android:layout_marginTop="20dp"
-        android:layout_toRightOf="@id/img_nearby_cover"
-        android:layout_marginRight="@dimen/normal_margin"
-        android:src="@drawable/img_copy_code"/>
+    <!--<ImageView-->
+    <!--android:id="@+id/img_copy_code"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_below="@id/txt_code_detail"-->
+    <!--android:layout_marginTop="20dp"-->
+    <!--android:layout_toRightOf="@id/img_nearby_cover"-->
+    <!--android:layout_marginRight="@dimen/normal_margin"-->
+    <!--android:src="@drawable/img_copy_code"/>-->
 
-    <ImageView
-        android:id="@+id/img_rq_code"
+    <TextView
+        android:id="@+id/txt_copy_code"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/txt_code_detail"
-        android:layout_marginTop="20dp"
-        android:layout_toRightOf="@id/img_copy_code"
-        android:src="@drawable/img_qr_code"/>
+        android:layout_marginTop="@dimen/normal_margin"
+        android:layout_toRightOf="@id/img_nearby_cover"
+        android:background="@drawable/bg_button_large_border"
+        android:drawableLeft="@drawable/ic_copy"
+        android:drawablePadding="@dimen/small_margin"
+        android:paddingBottom="7dp"
+        android:paddingLeft="@dimen/normal_margin"
+        android:paddingRight="@dimen/normal_margin"
+        android:paddingTop="7dp"
+        android:layout_marginRight="@dimen/normal_margin"
+        android:text="Copy Code"
+        android:textAllCaps="true"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/txt_qr_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_code_detail"
+        android:layout_marginTop="@dimen/normal_margin"
+        android:layout_toRightOf="@id/txt_copy_code"
+        android:background="@drawable/bg_button_large_border"
+        android:drawableLeft="@drawable/ic_qr_code"
+        android:drawablePadding="@dimen/small_margin"
+        android:paddingLeft="@dimen/normal_margin"
+        android:paddingRight="@dimen/normal_margin"
+        android:paddingTop="7dp"
+        android:paddingBottom="7dp"
+        android:text="QR Code"
+        android:textAllCaps="true"
+        android:textColor="@color/white" />
+
+    <!--<ImageView-->
+    <!--android:id="@+id/img_rq_code"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_below="@id/txt_code_detail"-->
+    <!--android:layout_marginTop="20dp"-->
+    <!--android:layout_toRightOf="@id/img_copy_code"-->
+    <!--android:src="@drawable/img_qr_code"/>-->
 
 </RelativeLayout>

@@ -21,4 +21,9 @@
     - Tham khảo menu tại link rút gọn sau: https://go.hl/rLEFxR\n
     - Nhấn nút bên dưới để nhận ưu đãi</string>
     <string name="code">Mã code</string>
+    <string name="expiry_date">Hạn chương trình</string>
+    <string name="user_name">Tên đăng nhập</string>
+    <string name="password">Mật khẩu</string>
+    <string name="login">Đăng nhập</string>
+    <string name="my_info">Thông tin</string>
 </resources>

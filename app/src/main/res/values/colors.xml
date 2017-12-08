@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#E2EFFB</color>
-    <color name="colorPrimaryDark">#3893E9</color>
+    <!--<color name="colorPrimary">#4db856</color>-->
+
+    <color name="colorPrimary">#A3D139</color>
+    <color name="colorPrimaryDark">#008062</color>
     <color name="colorAccent">#FF4081</color>
     <color name="transparent">#00000000</color>
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
     <color name="dark_gray">#999999</color>
     <color name="tab_selected_color">#FF00ccff</color>
-    <color name="navigation_bg">#E2EFFB</color>
+    <color name="navigation_bg">#4db856</color>
     <color name="text_color_blue_dark">#022495</color>
-    <color name="primary_dark_90_trans">#E63893E9</color>
-    <color name="primary_dark_80_trans">#CC3893E9</color>
+    <color name="primary_dark_90_trans">#E6008062</color>
+    <color name="primary_dark_80_trans">#CC008062</color>
     <color name="bg_gray">#f0f0f0</color>
 </resources>
