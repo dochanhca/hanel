@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">HanelDemo</string>
+    <string name="account">Tài khoản</string>
+    <string name="discount">Ưu đãi</string>
+    <string name="following">Theo dõi</string>
+    <string name="notification">Thông báo</string>
+    <string name="promotion">Khuyến mãi</string>
+    <string name="newest">Mới nhất</string>
+    <string name="near_you">Gần bạn</string>
+    <string name="cover_des">- Áp dụng sau 17:00 mỗi ngày\n- Áp dụng cho ngồi tại chỗ và mang đi\n- Áp dụng đến 02/12</string>
+    <string name="detail">Chi tiết</string>
+    <string name="other_promotion">Khuyến mãi khác</string>
+    <string name="promotion_title">Moca hôm nay - nhận ngay \"deal hot\"</string>
+    <string name="promotion_des">Thanh toán bằng ứng dụng MOCA trên điện thoại không chỉ
+    mang lại tiện ích dễ dàng, nhanh chóng mà còn đem lại các ưu đãi hấp dẫn khi Bạn là chủ thẻ
+    ACB. Cùng thẻ ACB khám phá...</string>
+    <string name="promotion_detail_des">- Vào đúng 10h và 16h mỗi ngày từ 11/10 - 15/10,
+    coffee bean tặng gift code giảm 30% thưởng thức trọn vẹn hương vị "Nhà Cà Phê" dành cho user may mắn
+    nhất.\n- Nếu bạn chưa may mắn nhận được mã trong hôm nay thì có thể thử lại vào hôm sau:\n
+    - Giftcode áp dụng đồng thời cho toàn bộ menu gồm bánh và nước tại coffe Bean.\n
+    - Tham khảo menu tại link rút gọn sau: https://go.hl/rLEFxR\n
+    - Nhấn nút bên dưới để nhận ưu đãi</string>
+    <string name="code">Mã code</string>
+</resources>

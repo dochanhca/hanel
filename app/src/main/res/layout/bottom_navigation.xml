@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation_bar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="0.5dp"
+        android:background="@android:color/darker_gray"></View>
+
+    <com.example.ducpv.haneldemo.customuis.NavigationLayoutGroup
+        android:id="@+id/nav_group"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal">
+
+        <com.example.ducpv.haneldemo.customuis.NavigationLayoutChild
+            android:id="@+id/nav_discount"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:iconNormal="@drawable/ic_discount"
+            app:iconSelected="@drawable/ic_discount_selected"
+            app:state="true"
+            app:text="@string/discount"
+            app:textColorNormal="@color/dark_gray"
+            app:textColorSelected="@color/colorPrimaryDark"/>
+
+        <com.example.ducpv.haneldemo.customuis.NavigationLayoutChild
+            android:id="@+id/nav_following"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:iconNormal="@drawable/ic_following"
+            app:iconSelected="@drawable/ic_following_selected"
+            app:text="@string/following"
+            app:textColorNormal="@color/dark_gray"
+            app:textColorSelected="@color/colorPrimaryDark"/>
+
+        <com.example.ducpv.haneldemo.customuis.NavigationLayoutChild
+            android:id="@+id/nav_notification"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:iconNormal="@drawable/ic_notification"
+            app:iconSelected="@drawable/ic_notification"
+            app:text="@string/notification"
+            app:textColorNormal="@color/dark_gray"
+            app:textColorSelected="@color/colorPrimaryDark"/>
+
+        <com.example.ducpv.haneldemo.customuis.NavigationLayoutChild
+            android:id="@+id/nav_account"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:iconNormal="@drawable/ic_account"
+            app:iconSelected="@drawable/ic_account"
+            app:text="@string/account"
+            app:textColorNormal="@color/dark_gray"
+            app:textColorSelected="@color/colorPrimaryDark"/>
+    </com.example.ducpv.haneldemo.customuis.NavigationLayoutGroup>
+</LinearLayout>

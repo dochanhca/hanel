@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="NavigationLayout">
+        <attr name="textColorNormal" format="color|reference"/>
+        <attr name="textColorSelected" format="color|reference"/>
+        <attr name="iconNormal" format="reference"/>
+        <attr name="iconSelected" format="reference"/>
+        <attr name="state" format="boolean" />
+        <attr name="showBoxValue" format="boolean" />
+        <attr name="text" format="string"/>
+        <attr name="showDivider" format="boolean" />
+        <attr name="dividerColor" format="color|reference" />
+    </declare-styleable>
+
+    <declare-styleable name="SegmentedGroup" >
+        <attr name="sc_corner_radius" format="dimension"/>
+        <attr name="sc_border_width" format="dimension"/>
+        <attr name="sc_tint_color" format="color"/>
+        <attr name="sc_checked_text_color" format="color"/>
+        <attr name="sc_unchecked_text_color" format="dimension"/>
+    </declare-styleable>
+</resources>

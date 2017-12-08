@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/normal_margin"
+    android:layout_marginBottom="@dimen/normal_margin">
+
+    <com.example.ducpv.haneldemo.customuis.SquareImageView
+        android:id="@+id/img_nearby_cover"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/normal_margin"
+        android:scaleType="fitXY"
+        android:src="@drawable/img_promotion_1" />
+
+    <TextView
+        android:id="@+id/txt_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/img_nearby_cover"
+        android:text="COFFE BEAN"
+        android:textAllCaps="true"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txt_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_name"
+        android:layout_marginTop="@dimen/small_margin"
+        android:layout_toRightOf="@id/img_nearby_cover"
+        android:ellipsize="end"
+        android:text="Số 2 Phan Xích Long, Phú Nhuận, Tp HCM"
+        android:textSize="@dimen/text_size_small" />
+
+    <TextView
+        android:id="@+id/txt_ip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_address"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@id/img_nearby_cover"
+        android:ellipsize="end"
+        android:text="192.168.2.1"
+        android:textSize="@dimen/text_size_small" />
+
+    <TextView
+        android:id="@+id/txt_discount_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_address"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_toRightOf="@id/txt_ip"
+        android:ellipsize="end"
+        android:text="2 Ưu đãi"
+        android:textSize="@dimen/text_size_small" />
+
+</RelativeLayout>
